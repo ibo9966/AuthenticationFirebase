@@ -57,9 +57,19 @@ class ProfileActivity : AppCompatActivity() {
                    val intent=Intent(this@ProfileActivity,GirisActivity::class.java)
                    startActivity(intent)
                    finish()
+
+                   var currentUserDb = currentUser?.let { it1 -> databaseReference?.child(it1.uid) }
+                   currentUserDb?.removeValue()
+                   Toast.makeText(this,"Adı soyadı silindi.",Toast.LENGTH_SHORT).show()
                }
            }
+        }
 
+        //  Güncelle  sayfasına geçiş ediliyor
+        binding.profilbilgilerimiguncellebutton.setOnClickListener {
+            val intent=Intent(this@ProfileActivity,GuncelleActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }
